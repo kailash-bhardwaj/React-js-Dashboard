@@ -52,10 +52,7 @@ function Form() {
         </Select>
       </FormControl>
       </div>
-      <div className='logingroup'>
-      <label>Switch</label>
-      <Switch/>
-      </div>
+  
       <div className='logingroup'>
       <Button variant="text">Text</Button>
 </div>
