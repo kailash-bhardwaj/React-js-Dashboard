@@ -1,104 +1,53 @@
-import React, { useState, Fragment } from "react";
-import { Router, Route, Link } from "react-router-dom";
-import { createBrowserHistory } from "history";
+import {
+  Drawer,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Button,
+} from "@material-ui/core";
+import {
+  CheckBoxOutlineBlankOutlined,
+  DraftsOutlined,
+  HomeOutlined,
+  InboxOutlined,
+  MailOutline,
+  ReceiptOutlined,
+} from "@material-ui/icons";
+import { useState } from "react";
 
-import { withStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import Drawer from "@material-ui/core/Drawer";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
-
-
-const drawerWidth = 240;
-const history = createBrowserHistory();
-
-const styles = theme => ({
-  root: {
-    flexGrow: 1
+const data = [
+  {
+    name: "Home",
+    icon: <HomeOutlined />,
   },
-  flex: {
-    flex: 1
-  },
-  drawerPaper: {
-    position: "relative",
-    width: drawerWidth
-  },
-  menuButton: {
-    marginLeft: -12,
-    marginRight: 20
-  },
-  toolbarMargin: theme.mixins.toolbar,
-  aboveDrawer: {
-    zIndex: theme.zIndex.drawer + 1
-  }
-});
+  { name: "Inbox", icon: <InboxOutlined /> },
+  { name: "Outbox", icon: <CheckBoxOutlineBlankOutlined /> },
+  { name: "Sent mail", icon: <MailOutline /> },
+  { name: "Draft", icon: <DraftsOutlined /> },
+  { name: "Trash", icon: <ReceiptOutlined /> },
+];
 
-const MyToolbar = withStyles(styles)(({ classes, title, onMenuClick }) => (
-  <Fragment>
-    <AppBar className={classes.aboveDrawer}>
-      <Toolbar>
-        <IconButton
-          className={classes.menuButton}
-          color="inherit"
-          aria-label="Menu"
-          onClick={onMenuClick}
-        >
-          <MenuIcon />
-        </IconButton>
-        <Typography variant="h6" color="inherit" className={classes.flex}>
-          {title}
-        </Typography>
-      </Toolbar>
-    </AppBar>
-    <div className={classes.toolbarMargin} />
-  </Fragment>
-));
+function ButtonOpen() {
+  const [open, setOpen] = useState(false);
 
-const MyDrawer = withStyles(styles)(
-  ({ classes, variant, open, onClose, onItemClick }) => (
-    <Router history={history}>
-      <Drawer
-        variant={variant}
-        open={open}
-        onClose={onClose}
-        classes={{
-          paper: classes.drawerPaper
-        }}
-      >
-        asdfsa
-      </Drawer>
-  
-    </Router>
-  )
-);
-
-function AppBarInteraction({ classes, variant }) {
-  const [drawer, setDrawer] = useState(false);
-  const [title, setTitle] = useState("Home");
-
-  const toggleDrawer = () => {
-    setDrawer(!drawer);
-  };
-
-  const onItemClick = title => () => {
-    setTitle(title);
-    setDrawer(variant === "temporary" ? false : drawer);
-    setDrawer(!drawer);
-  };
-
+  const getList = () => (
+    <div style={{ width: 250 }} onClick={() => setOpen(false)}>
+      {data.map((item, index) => (
+        <ListItem button key={index}>
+          <ListItemIcon>{item.icon}</ListItemIcon>
+          <ListItemText primary={item.name} />
+        </ListItem>
+      ))}
+    </div>
+  );
   return (
-    <div className={classes.root}>
-      <MyToolbar title={title} onMenuClick={toggleDrawer} />
-      <MyDrawer
-        open={drawer}
-        onClose={toggleDrawer}
-        onItemClick={onItemClick}
-        variant={variant}
-      />
+    <div>
+      <Button variant="contained" onClick={() => setOpen(true)}>Open Drawer</Button>
+      <Drawer open={open} anchor={"right"} onClose={() => setOpen(false)}>
+        {getList()}
+      </Drawer>
     </div>
   );
 }
 
-export default withStyles(styles)(AppBarInteraction);
+export default ButtonOpen;

@@ -11,11 +11,15 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Switch from '@mui/material/Switch';
 import Button from '@mui/material/Button';
+import Drawer from '../drawer/Drawer'
 
 function Form() {
   return (
     <>
-<h2>Forms</h2>
+    <div className='headerform'>
+    <h2>Forms</h2>
+<Drawer/>
+    </div>
 
 <Card>
       <CardContent>
