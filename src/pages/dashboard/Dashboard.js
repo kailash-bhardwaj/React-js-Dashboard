@@ -3,7 +3,6 @@ import Header from './component/header/Header';
 import Tablebox from './component/table/TableBox';
 import './Dashboard.scss';
 import Forms from './component/form/Form'
-
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 

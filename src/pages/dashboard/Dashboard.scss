@@ -7,6 +7,9 @@
     z-index: 3;
     left: 0;
     top:0;
+    @media only screen and (max-width: 767px) {
+        display: none;
+    }
     &__logo {
         text-align: center;
         padding: 15px;
@@ -42,6 +45,9 @@
     background-color: #ededed;
     min-height: 100vh;
     padding: 90px 15px 15px 260px;
+    @media only screen and (max-width: 767px) {
+        padding-left: 15px;
+    }
 }
 
 .header {
@@ -55,6 +61,12 @@
     display: flex;
     justify-content: flex-end;
     padding: 15px;
+    @media only screen and (max-width: 767px) {
+        width: 100%;
+        justify-content: space-between;
+        height: 40px;
+    align-items: center;    
+    }
     a{
         padding: 10px;
         text-decoration: none;
@@ -80,4 +92,26 @@ margin-bottom: 15px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.icon {
+    width: 58px;
+    margin-left: 15px;
+    display: none;
+    @media only screen and (max-width: 767px) {
+            display: block;
+    }
+}
+
+
+.icon path {
+    stroke: #000;
+}
+.mobilesidebar{
+    @media only screen and (max-width: 767px) {
+
+        .sidebar {
+            display: block;
+        }
+    }
 }
